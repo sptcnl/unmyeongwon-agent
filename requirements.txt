@@ -1,0 +1,8 @@
+streamlit>=1.40
+pandas
+playwright>=1.45
+requests
+pyyaml
+python-dotenv
+youtube-transcript-api>=1.0
+# anthropic   # llm.backend를 anthropic_api로 쓸 때만

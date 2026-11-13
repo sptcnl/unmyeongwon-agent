@@ -1,0 +1,39 @@
+# 운명원 유튜브 댓글 에이전트 설정
+
+profiles:            # 내 컴퓨터의 크롬 프로필 (필수는 유튜브1 하나)
+  - name: 유튜브1
+    dir: chrome_profiles/yt1
+  - name: 유튜브2
+    dir: chrome_profiles/yt2
+  - name: 유튜브3
+    dir: chrome_profiles/yt3
+
+comment:
+  min_chars: 40
+  max_chars: 120
+  brand: 운명원
+
+limits:
+  daily_max_comments: 10   # 하루 게시 상한 (코드에서 강제)
+
+youtube:
+  query: 연애               # 영상 불러오기 검색어
+  max_results: 15
+  region: KR
+  language: ko
+  rising:                  # '뜨기 직전 영상' 조건 (가점)
+    min_views: 1000
+    max_views: 5000
+    min_views_per_hour: 150
+    lookback_hours: 48
+
+llm:
+  backend: claude_cli      # claude_cli = Claude Code 헤드리스(구독, 추가 비용 0원) | anthropic_api = API 키
+  cli_model: haiku         # claude -p --model 값 (haiku / sonnet)
+  api_model: claude-haiku-5-5
+  max_attempts: 3          # 규칙 검사 통과 못 하면 다시 쓰는 횟수
+
+chrome:
+  channel: chrome          # 설치된 크롬 사용. 크롬이 없으면 "" (Playwright 크로미움)
+  typing_delay_ms: [60, 160]   # 한 글자 사이 간격 (랜덤)
+  dry_run: false           # true면 타이핑까지만 하고 게시 버튼은 안 누름 (리허설용)
